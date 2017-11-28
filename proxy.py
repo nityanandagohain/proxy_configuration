@@ -7,8 +7,10 @@
 
 #This files takes the location as input and writes the proxy authentication
 
+import getpass
+
 def writeToFile(location):
-	filepointer = open(location,"w")
+	filepointer = open(location, "w")
 	filepointer.write('Acquire::http::proxy "http://{0}:{1}@{2}:{3}/";\n'.format(username,password,proxy,port))
 	filepointer.write('Acquire::https::proxy  "https://{0}:{1}@{2}:{3}/";\n'.format(username,password,proxy,port))
 	filepointer.write('Acquire::ftp::proxy  "ftp://{0}:{1}@{2}:{3}/";\n'.format(username,password,proxy,port))
@@ -20,5 +22,5 @@ if __name__ == "__main__":
 	proxy = input("Enter proxy : ")
 	port  = input("Enter port : ")
 	username = input("Enter uername : ")
-	password = input("Enter password : ")
+	password = getpass.getpass("Enter password : ")
 	writeToFile("/etc/apt/apt.conf")
