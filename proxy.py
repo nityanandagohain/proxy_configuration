@@ -55,7 +55,6 @@ def writeToEnv(proxy, port, username, password, flag):
 			if r"http://" not in line and r"https://" not in line and r"ftp://" not in line and r"socks://" not in line:
 					opened_file.write(line)
 		opened_file.truncate()
-		opened_file.close()
 
 	#writing starts
 	if not flag:
@@ -77,7 +76,6 @@ def writeToBashrc(proxy, port, username, password, flag):
 			if r"http://" not in line and r'"https://' not in line and r"ftp://" not in line and r"socks://" not in line:
 					opened_file.write(line)
 		opened_file.truncate()
-		opened_file.close()
 	
 	#writing starts
 	if not flag:
