@@ -24,6 +24,7 @@ import getpass #for taking password input
 import shutil #for copying file
 import sys
 import os
+import os.path #for checking if file is present or not
 
 apt_ = r'/etc/apt/apt.conf'
 apt_backup = r'./.backup_proxy/apt.txt'
@@ -114,7 +115,8 @@ if __name__ == "__main__":
 	#create backup	if not present
 	if not os.path.isdir("./.backup_proxy"):	
 		os.makedirs("./.backup_proxy")
-		shutil.copyfile(apt_, apt_backup)
+		if os.path.isfile(apt_):
+			shutil.copyfile(apt_, apt_backup)
 		shutil.copyfile(env_, env_backup)
 		shutil.copyfile(bash_, bash_backup)
 
