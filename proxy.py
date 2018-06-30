@@ -117,17 +117,14 @@ def view_proxy():
     size = os.path.getsize(apt_)
     if size:
         filepointer = open(apt_, "r")
-        str = filepointer.readline()
-        print('\nHTTP Proxy: ' + find_between(str,'@',':'))
-        print('Port: ' + find_between(str,str[str.rfind(':')-1] ,'/"')[1:])
-        print('Username: ' + find_between(str,'://',':'))
-        print('Password: ' + '*'*(len(find_between(str,str[str.rfind(':')-2],'@')[2:])))
+        string = filepointer.readline()
+        print('\nHTTP Proxy: ' + string[string.rfind('@')+1 : string.rfind(':')])
+        print('Port: ' + string[string.rfind(':')+1 : string.rfind('/')])
+        print('Username: ' + string.split('://')[1].split(':')[0])
+        print('Password: ' + '*' * len(string[string.rfind(':',0,string.rfind('@'))+1 : string.rfind('@')]))
         filepointer.close()
     else:
         print("No proxy is set")
-
-def find_between(string,sym1,sym2):
-    return string.split(sym1)[1].split(sym2)[0]
 
 def restore_default():
     # copy from backup to main
